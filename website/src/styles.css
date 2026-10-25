@@ -1,0 +1,134 @@
+/* Design tokens: one teal accent, cool greys, light + dark */
+:root {
+  --bg: #f6f8f8;
+  --surface: #ffffff;
+  --surface-2: #f1f5f5;
+  --border: #e3e8e8;
+  --text: #1f2933;
+  --muted: #5f6b73;
+  --primary: #0f766e;
+  --primary-hover: #0d655e;
+  --primary-soft: rgb(15 118 110 / 0.09);
+  --code-bg: #f3f6f6;
+  --shadow: 0 1px 2px rgb(15 30 35 / 0.04), 0 8px 24px rgb(15 30 35 / 0.06);
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --header-height: 64px;
+  --content-width: 1160px;
+
+  --font: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+
+  /* code highlighting */
+  --hl-keyword: #7c3aed;
+  --hl-string: #0f766e;
+  --hl-number: #b45309;
+  --hl-comment: #8a959c;
+  --hl-title: #2563eb;
+  --hl-attr: #be185d;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0b1416;
+  --surface: #111c1f;
+  --surface-2: #142226;
+  --border: #25353a;
+  --text: #e8eef0;
+  --muted: #93a3a8;
+  --primary: #14b8a6;
+  --primary-hover: #2dd4bf;
+  --primary-soft: rgb(20 184 166 / 0.12);
+  --code-bg: #0f1a1d;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.35);
+
+  --hl-keyword: #c4b5fd;
+  --hl-string: #5eead4;
+  --hl-number: #fbbf24;
+  --hl-comment: #7d8b91;
+  --hl-title: #93c5fd;
+  --hl-attr: #f9a8d4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-padding-top: calc(var(--header-height) + var(--space-4));
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--primary-hover);
+}
+
+code,
+pre {
+  font-family: var(--mono);
+}
+
+:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* highlight.js tokens (used by CodeBlock and the markdown pages) */
+.hljs-keyword,
+.hljs-built_in,
+.hljs-literal,
+.hljs-meta {
+  color: var(--hl-keyword);
+}
+.hljs-string,
+.hljs-regexp {
+  color: var(--hl-string);
+}
+.hljs-number {
+  color: var(--hl-number);
+}
+.hljs-comment {
+  color: var(--hl-comment);
+  font-style: italic;
+}
+.hljs-title,
+.hljs-title.function_,
+.hljs-title.class_ {
+  color: var(--hl-title);
+}
+.hljs-attr,
+.hljs-attribute,
+.hljs-property,
+.hljs-tag .hljs-name,
+.hljs-name {
+  color: var(--hl-attr);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}

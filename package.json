@@ -5,14 +5,16 @@
   "license": "MIT",
   "workspaces": [
     "packages/react",
-    "packages/nest"
+    "packages/nest",
+    "website"
   ],
   "scripts": {
     "build": "npm run build --workspaces",
-    "test": "npm run test --workspaces",
-    "typecheck": "npm run typecheck --workspaces",
+    "test": "npm run test --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present",
     "format": "prettier --write .",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "dev": "npm run dev --workspace website"
   },
   "devDependencies": {
     "prettier": "^3.9.10",

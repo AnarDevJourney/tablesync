@@ -1,0 +1,8 @@
+# Docs website (website/). The site uses the local tablesync package,
+# so that is built first.
+[build]
+  command = "npm run build --workspace packages/react && npm run build --workspace website"
+  publish = "website/dist"
+
+[build.environment]
+  NODE_VERSION = "24"
