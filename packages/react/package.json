@@ -9,7 +9,7 @@
     "url": "git+https://github.com/AnarDevJourney/tablesync.git",
     "directory": "packages/react"
   },
-  "homepage": "https://github.com/AnarDevJourney/tablesync#readme",
+  "homepage": "https://tablesyncpackage.netlify.app",
   "bugs": "https://github.com/AnarDevJourney/tablesync/issues",
   "keywords": [
     "react",

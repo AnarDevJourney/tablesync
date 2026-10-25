@@ -9,6 +9,8 @@ Users drag columns into their own order, hide the ones they don't need, resize, 
 [![CI](https://github.com/AnarDevJourney/tablesync/actions/workflows/ci.yml/badge.svg)](https://github.com/AnarDevJourney/tablesync/actions/workflows/ci.yml)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
+**[Website, live demo and docs → tablesyncpackage.netlify.app](https://tablesyncpackage.netlify.app)**
+
 > **Status: 0.x, pre-release.** The API may still change between minor versions. tablesync grows out of a real product ([MedFlow](https://github.com/AnarDevJourney/medflow-frontend)), where every list page runs on it.
 
 ---

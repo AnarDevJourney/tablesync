@@ -9,7 +9,7 @@
     "url": "git+https://github.com/AnarDevJourney/tablesync.git",
     "directory": "packages/nest"
   },
-  "homepage": "https://github.com/AnarDevJourney/tablesync#backend-nestjs",
+  "homepage": "https://tablesyncpackage.netlify.app/docs#backend-nestjs",
   "bugs": "https://github.com/AnarDevJourney/tablesync/issues",
   "keywords": [
     "nestjs",

@@ -41,7 +41,7 @@ import { createRestStorage } from "tablesync";
 const storage = createRestStorage({ baseUrl: "/api/table-settings" });
 ```
 
-The full documentation, including the REST contract and its validation rules, is in the [tablesync README](https://github.com/AnarDevJourney/tablesync#backend-nestjs).
+The full documentation, including the REST contract and its validation rules, is on the [tablesync website](https://tablesyncpackage.netlify.app/docs#backend-nestjs).
 
 Requires NestJS 11 or 12, TypeORM 0.3, PostgreSQL, class-validator and class-transformer. NestJS 12 needs Node 22.12+.
 
