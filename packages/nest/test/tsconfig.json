@@ -1,0 +1,6 @@
+{
+  // Only for the test transform (decorators); `npm run typecheck` checks src
+  "extends": "../tsconfig.json",
+  "compilerOptions": { "lib": ["ES2022", "DOM"] },
+  "include": ["."]
+}

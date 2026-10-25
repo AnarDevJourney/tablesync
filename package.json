@@ -1,0 +1,22 @@
+{
+  "name": "tablesync-repo",
+  "private": true,
+  "description": "tablesync: per-user table settings for React + AntD, saved on your server",
+  "license": "MIT",
+  "workspaces": [
+    "packages/react",
+    "packages/nest"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces",
+    "test": "npm run test --workspaces",
+    "typecheck": "npm run typecheck --workspaces",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "prettier": "^3.9.10",
+    "typescript": "~6.0.2",
+    "vitest": "5.0.3"
+  }
+}

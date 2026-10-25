@@ -1,0 +1,72 @@
+{
+  "name": "tablesync",
+  "version": "0.1.0",
+  "description": "AntD data table whose per-user settings (columns, order, widths, pins, density, view) are saved on your server and follow the user to every device",
+  "license": "MIT",
+  "author": "Anar Talibov",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnarDevJourney/tablesync.git",
+    "directory": "packages/react"
+  },
+  "homepage": "https://github.com/AnarDevJourney/tablesync#readme",
+  "bugs": "https://github.com/AnarDevJourney/tablesync/issues",
+  "keywords": [
+    "react",
+    "antd",
+    "ant-design",
+    "table",
+    "data-table",
+    "datagrid",
+    "column-settings",
+    "user-preferences",
+    "persist"
+  ],
+  "type": "module",
+  "sideEffects": [
+    "*.css"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/styles.css",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "vite build && tsc -p tsconfig.build.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "prepack": "cp ../../README.md README.md && npm run build"
+  },
+  "peerDependencies": {
+    "@ant-design/icons": ">=6.0.0",
+    "@dnd-kit/core": "^6.3.0",
+    "@dnd-kit/sortable": ">=10.0.0",
+    "@dnd-kit/utilities": "^3.2.0",
+    "antd": "^6.6.0",
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@ant-design/icons": "^6.3.4",
+    "@dnd-kit/core": "^6.3.1",
+    "@dnd-kit/sortable": "^10.0.0",
+    "@dnd-kit/utilities": "^3.2.2",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "antd": "^6.6.6",
+    "jsdom": "^30.1.3",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "vite": "^8.3.0"
+  }
+}

@@ -1,0 +1,112 @@
+.preview {
+  display: flex;
+  flex-direction: column;
+  height: 104px;
+  padding: 8px;
+  overflow: hidden;
+  border-radius: var(--ts-radius-md);
+  background: var(--ts-card);
+}
+
+.row {
+  display: grid;
+  gap: 0;
+  flex-shrink: 0;
+  height: 16px;
+  border-bottom: 1px solid var(--ts-border);
+}
+
+.comfortable .row {
+  height: 20px;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  padding: 0 4px;
+}
+
+.bar {
+  display: block;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--ts-border);
+}
+
+.header .bar {
+  height: 5px;
+  background: var(--ts-muted);
+  opacity: 0.55;
+}
+
+.pinned {
+  background: var(--ts-primary-soft);
+}
+
+/* ─── Looks (mirror the real ones in DataTable.module.css) ── */
+.view-classic .header {
+  border-radius: 3px 3px 0 0;
+  background: var(--ts-hover);
+}
+
+.view-striped .header {
+  background: var(--ts-hover);
+}
+
+.view-striped .row:not(.header):nth-child(odd) {
+  background: var(--ts-hover);
+}
+
+.view-striped .row {
+  border-bottom: 0;
+}
+
+.view-grid {
+  padding: 8px;
+}
+
+.view-grid .row {
+  border: 1px solid var(--ts-border);
+  border-top: 0;
+}
+
+.view-grid .header {
+  border-top: 1px solid var(--ts-border);
+  background: var(--ts-hover);
+}
+
+.view-grid .cell + .cell {
+  border-left: 1px solid var(--ts-border);
+}
+
+.view-minimal .row {
+  border-bottom-color: transparent;
+}
+
+.view-minimal .header {
+  border-bottom-color: var(--ts-border);
+}
+
+.view-cards {
+  gap: 3px;
+  background: var(--ts-hover);
+}
+
+.view-cards .row {
+  border: 0;
+  border-radius: 3px;
+  background: var(--ts-card);
+}
+
+.view-cards .header {
+  background: transparent;
+}
+
+.view-accent .row:not(.header) {
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+.view-accent .header {
+  background: var(--ts-hover);
+}
