@@ -11,6 +11,7 @@ export {
   UpdateTableSettingsDto,
 } from "./dto/update-table-settings.dto";
 export { TableKeyParam } from "./dto/table-key.param";
+export type { FieldError } from "./errors";
 export {
   COLUMN_KEY,
   COLUMN_PINS,

@@ -17,4 +17,5 @@ First version, extracted from [MedFlow](https://github.com/AnarDevJourney/medflo
 ### tablesync-nest
 
 - `TableSyncModule.forRoot({ getUserId, path, maxTablesPerUser })`: `GET` / `PATCH` / `DELETE /:tableKey` with validation and per-user isolation.
+- `400` answers carry `details: [{ field, errors }]` (validation and duplicate column keys).
 - `TableSyncSettings` entity (PostgreSQL), `CreateTablesyncSettings1793300000000` migration, exported `TableSettingsService`.

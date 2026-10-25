@@ -103,12 +103,23 @@ describe.skipIf(!url)("TableSyncModule (e2e)", () => {
       (await call("PATCH", "/api/table-settings/users", "u1", { density: "x" })).status,
     ).toBe(400);
     expect((await call("GET", "/api/table-settings/Bad_Key", "u1")).status).toBe(400);
-    const dup = { key: "a", visible: true, width: null, pinned: null };
-    const res = await call("PATCH", "/api/table-settings/users", "u1", {
-      columns: [dup, dup],
+
+    let res = await call("PATCH", "/api/table-settings/users", "u1", {
+      columns: [{ key: "a", visible: true, width: 10, pinned: null }],
     });
     expect(res.status).toBe(400);
-    expect(JSON.stringify(await res.json())).toContain('duplicate column \\"a\\"');
+    expect(await res.json()).toMatchObject({
+      message: "Validation failed",
+      details: [{ field: "columns.0.width", errors: [expect.stringContaining("40")] }],
+    });
+
+    const dup = { key: "a", visible: true, width: null, pinned: null };
+    res = await call("PATCH", "/api/table-settings/users", "u1", { columns: [dup, dup] });
+    expect(res.status).toBe(400);
+    expect(await res.json()).toMatchObject({
+      message: "Invalid table columns",
+      details: [{ field: "columns", errors: ['duplicate column "a"'] }],
+    });
     expect((await call("GET", "/api/table-settings/users", null)).status).toBe(401);
   });
 

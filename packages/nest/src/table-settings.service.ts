@@ -1,14 +1,10 @@
-import {
-  BadRequestException,
-  Inject,
-  Injectable,
-  UnprocessableEntityException,
-} from "@nestjs/common";
+import { Inject, Injectable, UnprocessableEntityException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import type { Repository } from "typeorm";
 import { DEFAULT_MAX_TABLES_PER_USER, TABLESYNC_OPTIONS } from "./constants";
 import type { TableDensity } from "./constants";
 import type { UpdateTableSettingsDto } from "./dto/update-table-settings.dto";
+import { invalid } from "./errors";
 import { TableSyncSettings, type TableColumnSetting } from "./table-settings.entity";
 import type { TableSyncModuleOptions } from "./tablesync.options";
 
@@ -110,8 +106,8 @@ function assertUniqueKeys(columns: { key: string }[]): void {
     .map((column) => column.key)
     .filter((key) => seen.has(key) || !seen.add(key));
   if (duplicates.length > 0) {
-    throw new BadRequestException(
-      duplicates.map((key) => `columns: duplicate column "${key}"`),
-    );
+    throw invalid("Invalid table columns", [
+      { field: "columns", errors: duplicates.map((key) => `duplicate column "${key}"`) },
+    ]);
   }
 }

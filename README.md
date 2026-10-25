@@ -153,6 +153,7 @@ export class AppModule {}
 - **Auth stays yours.** The module only reads the user id through `getUserId`. If that returns `null` or `undefined`, the request gets a 401. Your global guards run before it as usual.
 - **Validation is built in.** The controller has its own `ValidationPipe` (`whitelist`, `forbidNonWhitelisted`), so it works whether or not your app has a global one.
 - **Database:** PostgreSQL (`jsonb`). The table is `tablesync_settings`. Run the bundled migration, or create the table yourself with the SQL in `CreateTablesyncSettings1793300000000`. Column names are explicit, so any TypeORM naming strategy works.
+- **Errors** are standard Nest exceptions, so your exception filter shapes them: `400` (bad input; the body has `details: [{ field, errors }]`, e.g. `columns.0.width`), `401` (no user), `422` (too many tables).
 - `TableSettingsService` is exported too, for use from your own code (for example, to delete a user's settings when you delete the user).
 
 ## Backend: anything else (REST contract)
