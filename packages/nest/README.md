@@ -1,5 +1,7 @@
 # tablesync-nest
 
+[![npm](https://img.shields.io/npm/v/tablesync-nest.svg)](https://www.npmjs.com/package/tablesync-nest)
+
 NestJS backend for [tablesync](https://github.com/AnarDevJourney/tablesync), the Ant Design data table that saves each user's column layout, density and view on your server.
 
 `GET` / `PATCH` / `DELETE /table-settings/:tableKey` for the signed-in user, with validation, per-user isolation and a PostgreSQL migration.
@@ -32,7 +34,7 @@ import {
 export class AppModule {}
 ```
 
-On the frontend:
+On the frontend, with [`tablesync`](https://www.npmjs.com/package/tablesync):
 
 ```ts
 import { createRestStorage } from "tablesync";

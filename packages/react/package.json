@@ -45,7 +45,8 @@
     "build": "vite build && tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run",
-    "prepack": "cp ../../README.md README.md && npm run build"
+    "prepack": "cp README.md .folder-readme.bak && cp ../../README.md README.md && npm run build",
+    "postpack": "mv .folder-readme.bak README.md"
   },
   "peerDependencies": {
     "@ant-design/icons": ">=6.0.0",

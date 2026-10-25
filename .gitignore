@@ -3,4 +3,4 @@ dist
 *.tsbuildinfo
 *.tgz
 .DS_Store
-packages/react/README.md
+packages/react/.folder-readme.bak

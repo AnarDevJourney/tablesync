@@ -4,7 +4,9 @@
 
 Users drag columns into their own order, hide the ones they don't need, resize, pin, and pick a density and a look. tablesync saves those choices **per user**, so the table looks the same on their laptop tomorrow and on their phone next week. You describe the columns once in code; tablesync handles the rest, frontend _and_ backend.
 
-[![npm](https://img.shields.io/npm/v/tablesync.svg)](https://www.npmjs.com/package/tablesync)
+[![npm](https://img.shields.io/npm/v/tablesync.svg?label=tablesync)](https://www.npmjs.com/package/tablesync)
+[![npm](https://img.shields.io/npm/v/tablesync-nest.svg?label=tablesync-nest)](https://www.npmjs.com/package/tablesync-nest)
+[![CI](https://github.com/AnarDevJourney/tablesync/actions/workflows/ci.yml/badge.svg)](https://github.com/AnarDevJourney/tablesync/actions/workflows/ci.yml)
 [![license](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 > **Status: 0.x, pre-release.** The API may still change between minor versions. tablesync grows out of a real product ([MedFlow](https://github.com/AnarDevJourney/medflow-frontend)), where every list page runs on it.
@@ -51,10 +53,10 @@ Sorting and pagination are **server-side**: the table reports what the user clic
 
 ## Packages
 
-| Package                             | What it is                                                                                                       |
-| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [`tablesync`](./packages/react)     | The React component (`DataTable`), `TableSyncProvider`, and the `localStorage` and REST storage adapters         |
-| [`tablesync-nest`](./packages/nest) | NestJS module: `GET` / `PATCH` / `DELETE /table-settings/:tableKey` for the signed-in user (TypeORM, PostgreSQL) |
+| Package                                                          | Version                                                                                                 | What it is                                                                                                       | Source                               |
+| ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| [`tablesync`](https://www.npmjs.com/package/tablesync)           | [![npm](https://img.shields.io/npm/v/tablesync.svg)](https://www.npmjs.com/package/tablesync)           | The React component (`DataTable`), `TableSyncProvider`, and the `localStorage` and REST storage adapters         | [`packages/react`](./packages/react) |
+| [`tablesync-nest`](https://www.npmjs.com/package/tablesync-nest) | [![npm](https://img.shields.io/npm/v/tablesync-nest.svg)](https://www.npmjs.com/package/tablesync-nest) | NestJS module: `GET` / `PATCH` / `DELETE /table-settings/:tableKey` for the signed-in user (TypeORM, PostgreSQL) | [`packages/nest`](./packages/nest)   |
 
 ## Install
 
