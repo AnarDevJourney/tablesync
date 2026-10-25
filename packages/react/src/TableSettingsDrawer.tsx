@@ -25,10 +25,10 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 import { Button, Checkbox, Drawer, Popconfirm, Segmented, Tooltip } from "antd";
 import type { CSSProperties } from "react";
-import { useTableSync } from "./context";
-import type { ResolvedColumn } from "./resolveColumns";
-import { TableViewPreview } from "./TableViewPreview";
-import type { ColumnPin, TableDensity, TableViewId } from "./types";
+import { useTableSync } from "./context.js";
+import type { ResolvedColumn } from "./resolveColumns.js";
+import { TableViewPreview } from "./TableViewPreview.js";
+import type { ColumnPin, TableDensity, TableViewId } from "./types.js";
 import styles from "./TableSettingsDrawer.module.css";
 
 interface TableSettingsDrawerProps<T> {

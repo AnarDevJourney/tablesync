@@ -1,4 +1,4 @@
-import type { TableViewId } from "./types";
+import type { TableViewId } from "./types.js";
 
 // Every text the table shows. Pass your own (all or some) to
 // TableSyncProvider — e.g. built from your i18n library.

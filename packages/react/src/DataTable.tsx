@@ -33,9 +33,9 @@ import {
   type HTMLAttributes,
   type Key,
 } from "react";
-import { useTableSync } from "./context";
-import { HeaderCell, type HeaderCellExtra } from "./HeaderCell";
-import { RowActionsMenu } from "./RowActionsMenu";
+import { useTableSync } from "./context.js";
+import { HeaderCell, type HeaderCellExtra } from "./HeaderCell.js";
+import { RowActionsMenu } from "./RowActionsMenu.js";
 import {
   clampWidth,
   maxWidthOf,
@@ -43,12 +43,12 @@ import {
   resolveColumns,
   toSavedColumns,
   type ResolvedColumn,
-} from "./resolveColumns";
-import { TableSettingsDrawer } from "./TableSettingsDrawer";
-import { DEFAULT_TABLE_VIEW, isTableView, TABLE_VIEWS } from "./tableViews";
-import { useThemeVars } from "./themeVars";
-import type { DataTableProps, TableDensity } from "./types";
-import { useTableSettings } from "./useTableSettings";
+} from "./resolveColumns.js";
+import { TableSettingsDrawer } from "./TableSettingsDrawer.js";
+import { DEFAULT_TABLE_VIEW, isTableView, TABLE_VIEWS } from "./tableViews.js";
+import { useThemeVars } from "./themeVars.js";
+import type { DataTableProps, TableDensity } from "./types.js";
+import { useTableSettings } from "./useTableSettings.js";
 import styles from "./DataTable.module.css";
 
 const SKELETON_ROWS = 8;

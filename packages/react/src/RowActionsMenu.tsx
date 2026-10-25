@@ -1,7 +1,7 @@
 import { EyeOutlined, MoreOutlined } from "@ant-design/icons";
 import { Button, Dropdown, type MenuProps } from "antd";
-import { useTableSync } from "./context";
-import type { DataTableRowAction, DataTableRowMenuItem } from "./types";
+import { useTableSync } from "./context.js";
+import type { DataTableRowAction, DataTableRowMenuItem } from "./types.js";
 
 interface RowActionsMenuProps {
   items: DataTableRowMenuItem[];

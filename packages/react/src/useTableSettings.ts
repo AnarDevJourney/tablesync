@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useSyncExternalStore } from "react";
-import { useTableSync } from "./context";
-import type { TableSettingsPatch } from "./types";
+import { useTableSync } from "./context.js";
+import type { TableSettingsPatch } from "./types.js";
 
 // Settings of one table: loaded the first time a table with this key
 // shows up, then kept in the provider's cache. `settings` is undefined

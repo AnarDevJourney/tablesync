@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
-import type { ResolvedColumn } from "./resolveColumns";
-import type { TableDensity, TableViewId } from "./types";
+import type { ResolvedColumn } from "./resolveColumns.js";
+import type { TableDensity, TableViewId } from "./types.js";
 import styles from "./TableViewPreview.module.css";
 
 // Accent colors of the mock rows

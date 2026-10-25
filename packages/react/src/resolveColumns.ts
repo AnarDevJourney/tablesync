@@ -1,4 +1,4 @@
-import type { ColumnPin, DataTableColumn, TableColumnSetting } from "./types";
+import type { ColumnPin, DataTableColumn, TableColumnSetting } from "./types.js";
 
 export const DEFAULT_COLUMN_WIDTH = 160;
 export const MIN_COLUMN_WIDTH = 72;

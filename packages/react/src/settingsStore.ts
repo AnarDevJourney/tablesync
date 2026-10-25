@@ -1,4 +1,4 @@
-import type { TableSettings, TableSettingsPatch, TableSettingsStorage } from "./types";
+import type { TableSettings, TableSettingsPatch, TableSettingsStorage } from "./types.js";
 
 export const emptySettings = (): TableSettings => ({
   columns: null,

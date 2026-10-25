@@ -1,4 +1,4 @@
-import type { TableSettings, TableSettingsStorage } from "../types";
+import type { TableSettings, TableSettingsStorage } from "../types.js";
 
 export interface LocalStorageOptions {
   // Key prefix; use one per user if several people share a browser

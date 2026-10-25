@@ -1,4 +1,4 @@
-import type { TableViewId } from "./types";
+import type { TableViewId } from "./types.js";
 
 // Ready-made looks of every DataTable. Each one is only CSS (DataTable.module.css,
 // `.view-<id>`); the columns, data and behaviour stay the same.

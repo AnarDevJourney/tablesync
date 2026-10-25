@@ -1,9 +1,9 @@
 import { useMemo, type ReactNode } from "react";
-import { logSaveError, TableSyncContext } from "./context";
-import { mergeLabels, type TableSyncLabelsInput } from "./labels";
-import { SettingsStore, type SaveErrorHandler } from "./settingsStore";
-import { createLocalStorage } from "./storage/localStorage";
-import type { TableSettingsStorage } from "./types";
+import { logSaveError, TableSyncContext } from "./context.js";
+import { mergeLabels, type TableSyncLabelsInput } from "./labels.js";
+import { SettingsStore, type SaveErrorHandler } from "./settingsStore.js";
+import { createLocalStorage } from "./storage/localStorage.js";
+import type { TableSettingsStorage } from "./types.js";
 
 export interface TableSyncProviderProps {
   // Where settings are saved; default: this browser's localStorage.

@@ -1,7 +1,7 @@
 import { createContext, useContext } from "react";
-import { DEFAULT_LABELS, type TableSyncLabels } from "./labels";
-import { SettingsStore, type SaveErrorHandler } from "./settingsStore";
-import { createLocalStorage } from "./storage/localStorage";
+import { DEFAULT_LABELS, type TableSyncLabels } from "./labels.js";
+import { SettingsStore, type SaveErrorHandler } from "./settingsStore.js";
+import { createLocalStorage } from "./storage/localStorage.js";
 
 export interface TableSyncContextValue {
   store: SettingsStore;

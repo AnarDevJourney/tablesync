@@ -1,4 +1,4 @@
-import type { TableSettings, TableSettingsStorage } from "../types";
+import type { TableSettings, TableSettingsStorage } from "../types.js";
 
 export interface RestStorageOptions {
   // Settings of a table live at `${baseUrl}/${tableKey}` (GET, PATCH, DELETE)
