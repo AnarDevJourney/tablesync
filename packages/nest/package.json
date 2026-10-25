@@ -1,6 +1,6 @@
 {
   "name": "tablesync-nest",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "NestJS + TypeORM (PostgreSQL) backend for tablesync: GET / PATCH / DELETE per-user table settings",
   "license": "MIT",
   "author": "Anar Talibov",

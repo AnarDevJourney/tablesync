@@ -2,6 +2,17 @@
 
 All notable changes to `tablesync` and `tablesync-nest`. Versions follow [semver](https://semver.org); while in `0.x`, a minor version may break the API.
 
+## 0.1.1 — 2026-10-25
+
+### tablesync
+
+- Toolbar: on narrow screens the actions wrap to their own line instead of squeezing the search and filters.
+- Docs website with a live demo: [tablesyncpackage.netlify.app](https://tablesyncpackage.netlify.app); `homepage` points to it.
+
+### tablesync-nest
+
+- `homepage` points to the website's backend docs. No code changes.
+
 ## 0.1.0 — 2026-10-25
 
 First version, extracted from [MedFlow](https://github.com/AnarDevJourney/medflow-frontend).

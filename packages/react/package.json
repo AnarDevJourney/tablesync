@@ -1,6 +1,6 @@
 {
   "name": "tablesync",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "AntD data table whose per-user settings (columns, order, widths, pins, density, view) are saved on your server and follow the user to every device",
   "license": "MIT",
   "author": "Anar Talibov",

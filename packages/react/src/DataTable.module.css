@@ -22,9 +22,15 @@
   gap: 8px;
 }
 
+/* Search and filters take the free space; when the actions don't fit next
+   to them (narrow screens) they wrap to their own line instead of squeezing */
 .toolbarStart {
-  flex: 1;
+  flex: 1 1 280px;
   min-width: 0;
+}
+
+.toolbarEnd {
+  margin-inline-start: auto;
 }
 
 /* ─── Base (every view) ─────────────────────────────────── */
