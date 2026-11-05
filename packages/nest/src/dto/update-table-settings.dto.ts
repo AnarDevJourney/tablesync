@@ -1,6 +1,8 @@
 import { Transform, Type } from "class-transformer";
 import {
   ArrayMaxSize,
+  ArrayMinSize,
+  ArrayUnique,
   IsArray,
   IsBoolean,
   IsIn,
@@ -16,6 +18,8 @@ import {
   COLUMN_PINS,
   MAX_COLUMN_WIDTH,
   MAX_COLUMNS,
+  MAX_PAGE_SIZE,
+  MAX_PAGE_SIZE_OPTIONS,
   MIN_COLUMN_WIDTH,
   SLUG,
   TABLE_DENSITIES,
@@ -66,4 +70,15 @@ export class UpdateTableSettingsDto {
     message: "view must be a lowercase slug (a-z, 0-9, -), max 40 characters",
   })
   view?: string | null;
+
+  @ValidateIf((_, value) => value !== undefined && value !== null)
+  @Transform(sent)
+  @IsArray()
+  @ArrayMinSize(1)
+  @ArrayMaxSize(MAX_PAGE_SIZE_OPTIONS)
+  @ArrayUnique()
+  @IsInt({ each: true })
+  @Min(1, { each: true })
+  @Max(MAX_PAGE_SIZE, { each: true })
+  pageSizeOptions?: number[] | null;
 }

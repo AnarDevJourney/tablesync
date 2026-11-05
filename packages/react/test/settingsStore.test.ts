@@ -37,6 +37,7 @@ describe("SettingsStore", () => {
       columns: null,
       density: "comfortable",
       view: null,
+      pageSizeOptions: null,
     });
   });
 
@@ -54,6 +55,7 @@ describe("SettingsStore", () => {
       columns: null,
       density: null,
       view: null,
+      pageSizeOptions: null,
     });
   });
 
@@ -73,6 +75,7 @@ describe("SettingsStore", () => {
       columns: null,
       density: null,
       view: null,
+      pageSizeOptions: null,
     });
     await flush();
 

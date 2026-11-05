@@ -12,6 +12,8 @@ export interface TableSyncLabels {
   density: string;
   compact: string;
   comfortable: string;
+  pageSizes: string;
+  pageSizesHint: (max: number, count: number) => string;
   columns: string;
   visibleCount: (visible: number, total: number) => string;
   columnsHint: string;
@@ -53,6 +55,9 @@ export const DEFAULT_LABELS: TableSyncLabels = {
   density: "Row density",
   compact: "Compact",
   comfortable: "Comfortable",
+  pageSizes: "Rows per page",
+  pageSizesHint: (max, count) =>
+    `Type a number and press Enter: whole numbers up to ${max}, at most ${count} sizes. Leave it empty for the default.`,
   columns: "Columns",
   visibleCount: (visible, total) => `${visible} of ${total} visible`,
   columnsHint:
@@ -70,7 +75,8 @@ export const DEFAULT_LABELS: TableSyncLabels = {
   resizeColumn: (name) => `Resize column ${name}`,
   reset: "Reset to default",
   resetConfirmTitle: "Reset this table?",
-  resetConfirmBody: "Columns, widths, pins, density and view go back to the default.",
+  resetConfirmBody:
+    "Columns, widths, pins, density, view and page sizes go back to the default.",
   cancel: "Cancel",
   done: "Done",
   emptyTitle: "Nothing here yet",

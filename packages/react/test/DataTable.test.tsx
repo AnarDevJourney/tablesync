@@ -1,6 +1,6 @@
 import { act } from "react";
 import { createRoot } from "react-dom/client";
-import { afterEach, beforeAll, describe, expect, it } from "vitest";
+import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import { DataTable, TableSyncProvider, type DataTableColumn } from "../src";
 import type { TableSettingsStorage } from "../src/types";
 
@@ -84,6 +84,51 @@ describe("DataTable", () => {
     );
     expect(headers()).toEqual(["Email"]);
     expect(container.querySelector('button[aria-label="Table settings"]')).not.toBeNull();
+  });
+
+  it("moves to the user's smallest page size when the page's size isn't offered", async () => {
+    window.localStorage.setItem(
+      "tablesync:sized",
+      JSON.stringify({ pageSizeOptions: [15, 30] }),
+    );
+    const onChange = vi.fn();
+    const pagination = { page: 3, total: 90, onChange };
+    await render(
+      <DataTable
+        tableKey="sized"
+        columns={columns}
+        data={data}
+        rowKey="id"
+        pagination={{ ...pagination, pageSize: 20 }}
+      />,
+    );
+    expect(onChange).toHaveBeenCalledExactlyOnceWith(1, 15);
+
+    onChange.mockClear();
+    await render(
+      <DataTable
+        tableKey="sized"
+        columns={columns}
+        data={data}
+        rowKey="id"
+        pagination={{ ...pagination, pageSize: 30 }}
+      />,
+    );
+    expect(onChange).not.toHaveBeenCalled();
+  });
+
+  it("leaves the page size alone without saved sizes", async () => {
+    const onChange = vi.fn();
+    await render(
+      <DataTable
+        tableKey="unsized"
+        columns={columns}
+        data={data}
+        rowKey="id"
+        pagination={{ page: 1, pageSize: 7, total: 90, onChange }}
+      />,
+    );
+    expect(onChange).not.toHaveBeenCalled();
   });
 
   it("shows the empty state", async () => {

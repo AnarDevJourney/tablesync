@@ -2,6 +2,20 @@
 
 All notable changes to `tablesync` and `tablesync-nest`. Versions follow [semver](https://semver.org); while in `0.x`, a minor version may break the API.
 
+## 0.2.0 — 2026-11-05
+
+**Upgrading `tablesync-nest`: run the new migration `AddTablesyncPageSizeOptions1793500000000` first.** The entity reads the new column, so every request fails without it.
+
+### tablesync
+
+- Users can set their own page sizes in the settings drawer (up to 10 sizes, at most 100 rows per page). Saved per user and table as `pageSizeOptions`.
+- If the current `pageSize` isn't one of the user's sizes, the table calls `pagination.onChange(1, smallestSize)`.
+- New labels `pageSizes` and `pageSizesHint`. Exports `MAX_PAGE_SIZE`, `MAX_PAGE_SIZE_OPTIONS`.
+
+### tablesync-nest
+
+- New column `page_size_options` and field `pageSizeOptions` (1–10 unique whole numbers from 1 to 100, or `null`). Migration `AddTablesyncPageSizeOptions1793500000000`.
+
 ## 0.1.1 — 2026-10-25
 
 ### tablesync

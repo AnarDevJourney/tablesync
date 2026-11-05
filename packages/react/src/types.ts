@@ -19,6 +19,8 @@ export interface TableSettings {
   columns: TableColumnSetting[] | null;
   density: TableDensity | null;
   view: string | null;
+  // The sizes offered in the pager (1–100)
+  pageSizeOptions: number[] | null;
 }
 
 export type TableSettingsPatch = Partial<TableSettings>;
@@ -70,6 +72,7 @@ export interface DataTablePagination {
   pageSize: number;
   total: number;
   onChange: (page: number, pageSize: number) => void;
+  // Code default; a user's own sizes from the settings drawer win
   pageSizeOptions?: number[];
 }
 

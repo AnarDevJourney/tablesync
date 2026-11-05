@@ -6,6 +6,7 @@ export {
 } from "./table-settings.service";
 export { TableSyncSettings, type TableColumnSetting } from "./table-settings.entity";
 export { CreateTablesyncSettings1793300000000 } from "./create-tablesync-settings.migration";
+export { AddTablesyncPageSizeOptions1793500000000 } from "./add-page-size-options.migration";
 export {
   TableColumnSettingDto,
   UpdateTableSettingsDto,
@@ -17,6 +18,8 @@ export {
   COLUMN_PINS,
   MAX_COLUMN_WIDTH,
   MAX_COLUMNS,
+  MAX_PAGE_SIZE,
+  MAX_PAGE_SIZE_OPTIONS,
   MIN_COLUMN_WIDTH,
   SLUG,
   TABLE_DENSITIES,

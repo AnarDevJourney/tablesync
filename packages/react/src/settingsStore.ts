@@ -4,12 +4,14 @@ export const emptySettings = (): TableSettings => ({
   columns: null,
   density: null,
   view: null,
+  pageSizeOptions: null,
 });
 
 const normalize = (raw: Partial<TableSettings> | null): TableSettings => ({
   columns: raw?.columns ?? null,
   density: raw?.density ?? null,
   view: raw?.view ?? null,
+  pageSizeOptions: raw?.pageSizeOptions ?? null,
 });
 
 export type SaveErrorHandler = (error: unknown, tableKey: string) => void;

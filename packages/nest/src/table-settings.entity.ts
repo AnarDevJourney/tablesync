@@ -37,6 +37,10 @@ export class TableSyncSettings {
   @Column({ type: "varchar", length: 40, nullable: true })
   view: string | null;
 
+  // Sizes offered in the pager, e.g. [15, 30, 75]
+  @Column({ name: "page_size_options", type: "jsonb", nullable: true })
+  pageSizeOptions: number[] | null;
+
   @CreateDateColumn({ name: "created_at", type: "timestamptz" })
   createdAt: Date;
 

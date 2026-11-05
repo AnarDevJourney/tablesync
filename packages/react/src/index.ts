@@ -13,6 +13,7 @@ export {
   type TableSyncLabelsInput,
 } from "./labels.js";
 export type { SaveErrorHandler } from "./settingsStore.js";
+export { MAX_PAGE_SIZE, MAX_PAGE_SIZE_OPTIONS } from "./pageSizes.js";
 export { TABLE_VIEWS } from "./tableViews.js";
 export type {
   ColumnPin,

@@ -17,9 +17,12 @@ describe("UpdateTableSettingsDto", () => {
         columns: [{ key: "lastName", visible: true, width: 180, pinned: "left" }],
         density: "compact",
         view: "striped",
+        pageSizeOptions: [15, 30, 100],
       }),
     ).toEqual([]);
-    expect(await errorsOf({ columns: null, density: null, view: null })).toEqual([]);
+    expect(
+      await errorsOf({ columns: null, density: null, view: null, pageSizeOptions: null }),
+    ).toEqual([]);
     expect(await errorsOf({})).toEqual([]);
   });
 
@@ -42,6 +45,23 @@ describe("UpdateTableSettingsDto", () => {
         })),
       }),
     ).toEqual(["columns"]);
+  });
+
+  it("limits page sizes to 1–100", async () => {
+    for (const pageSizeOptions of [
+      [],
+      [101],
+      [0],
+      [-5],
+      [10.5],
+      ["10"],
+      [10, 10],
+      "10",
+      Array.from({ length: 11 }, (_, i) => i + 1),
+    ]) {
+      expect(await errorsOf({ pageSizeOptions })).toEqual(["pageSizeOptions"]);
+    }
+    expect(await errorsOf({ pageSizeOptions: [1, 100] })).toEqual([]);
   });
 
   it("checks the table key", async () => {

@@ -23,9 +23,10 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-import { Button, Checkbox, Drawer, Popconfirm, Segmented, Tooltip } from "antd";
+import { Button, Checkbox, Drawer, Popconfirm, Segmented, Select, Tooltip } from "antd";
 import type { CSSProperties } from "react";
 import { useTableSync } from "./context.js";
+import { cleanPageSizes, MAX_PAGE_SIZE, MAX_PAGE_SIZE_OPTIONS } from "./pageSizes.js";
 import type { ResolvedColumn } from "./resolveColumns.js";
 import { TableViewPreview } from "./TableViewPreview.js";
 import type { ColumnPin, TableDensity, TableViewId } from "./types.js";
@@ -38,11 +39,14 @@ interface TableSettingsDrawerProps<T> {
   density: TableDensity;
   view: TableViewId;
   views: readonly TableViewId[]; // the views this table supports
+  pageSizes: number[] | null; // null = the table has no pager
+  customPageSizes: boolean; // the user's own sizes, not the defaults
   themeVars: CSSProperties; // the drawer is portaled out of the table
   customized: boolean; // something differs from the defaults
   onColumnsChange: (columns: ResolvedColumn<T>[]) => void;
   onDensityChange: (density: TableDensity) => void;
   onViewChange: (view: TableViewId) => void;
+  onPageSizesChange: (sizes: number[] | null) => void; // null = back to the default
   onReset: () => void;
 }
 
@@ -58,11 +62,14 @@ export function TableSettingsDrawer<T>({
   density,
   view,
   views,
+  pageSizes,
+  customPageSizes,
   themeVars,
   customized,
   onColumnsChange,
   onDensityChange,
   onViewChange,
+  onPageSizesChange,
   onReset,
 }: TableSettingsDrawerProps<T>) {
   const { labels } = useTableSync();
@@ -178,6 +185,34 @@ export function TableSettingsDrawer<T>({
           ]}
         />
       </section>
+
+      {pageSizes && (
+        <section className={styles.section}>
+          <h3 className={styles.heading}>{labels.pageSizes}</h3>
+          <p className={styles.hint}>
+            {labels.pageSizesHint(MAX_PAGE_SIZE, MAX_PAGE_SIZE_OPTIONS)}
+          </p>
+          <Select<string[]>
+            mode="tags"
+            open={false}
+            suffixIcon={null}
+            className={styles.pageSizes}
+            aria-label={labels.pageSizes}
+            tokenSeparators={[",", " "]}
+            // the defaults are shown as a starting point, not stored
+            value={pageSizes.map(String)}
+            onChange={(values) => {
+              const sizes = cleanPageSizes(values);
+              const same = sizes.join() === pageSizes.join();
+              if (sizes.length === 0) {
+                if (customPageSizes) onPageSizesChange(null);
+              } else if (!same) {
+                onPageSizesChange(sizes);
+              }
+            }}
+          />
+        </section>
+      )}
 
       <section className={styles.section}>
         <div className={styles.headingRow}>

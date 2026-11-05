@@ -27,6 +27,7 @@ import {
 } from "antd";
 import type { SorterResult } from "antd/es/table/interface";
 import {
+  useEffect,
   useMemo,
   useState,
   type CSSProperties,
@@ -35,6 +36,7 @@ import {
 } from "react";
 import { useTableSync } from "./context.js";
 import { HeaderCell, type HeaderCellExtra } from "./HeaderCell.js";
+import { DEFAULT_PAGE_SIZE_OPTIONS, savedPageSizes } from "./pageSizes.js";
 import { RowActionsMenu } from "./RowActionsMenu.js";
 import {
   clampWidth,
@@ -121,7 +123,26 @@ export function DataTable<T extends object>({
   const savedView = settings?.view;
   const view =
     isTableView(savedView) && views.includes(savedView) ? savedView : defaultView;
-  const customized = Boolean(settings?.columns || settings?.density || settings?.view);
+  const customSizes = useMemo(
+    () => savedPageSizes(settings?.pageSizeOptions),
+    [settings?.pageSizeOptions],
+  );
+  const pageSizes =
+    customSizes ||
+    (pagination && pagination.pageSizeOptions) ||
+    DEFAULT_PAGE_SIZE_OPTIONS;
+  const customized = Boolean(
+    settings?.columns || settings?.density || settings?.view || settings?.pageSizeOptions,
+  );
+
+  // The page's size must be one the user offers themself; else their smallest
+  const currentSize = pagination ? pagination.pageSize : null;
+  useEffect(() => {
+    if (!pagination || !customSizes || customSizes.includes(pagination.pageSize)) return;
+    pagination.onChange(1, customSizes[0]);
+    // `pagination` is a new object on every render of the page
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [customSizes, currentSize]);
 
   const saveColumns = (next: ResolvedColumn<T>[]) =>
     update({ columns: toSavedColumns(next) });
@@ -345,7 +366,7 @@ export function DataTable<T extends object>({
                       total: pagination.total,
                       onChange: pagination.onChange,
                       showSizeChanger: true,
-                      pageSizeOptions: pagination.pageSizeOptions ?? [10, 20, 50, 100],
+                      pageSizeOptions: pageSizes,
                       showTotal: (total, [from, to]) => labels.total(from, to, total),
                     }
                   : false
@@ -363,11 +384,14 @@ export function DataTable<T extends object>({
           density={density}
           view={view}
           views={views}
+          pageSizes={pagination ? pageSizes : null}
+          customPageSizes={Boolean(customSizes)}
           themeVars={vars}
           customized={customized}
           onColumnsChange={saveColumns}
           onDensityChange={(value) => update({ density: value })}
           onViewChange={(value) => update({ view: value })}
+          onPageSizesChange={(value) => update({ pageSizeOptions: value })}
           onReset={reset}
         />
       )}

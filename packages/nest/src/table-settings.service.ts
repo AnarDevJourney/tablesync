@@ -13,6 +13,7 @@ export interface TableSettingsResponse {
   columns: TableColumnSetting[] | null; // null = table defaults
   density: TableDensity | null;
   view: string | null;
+  pageSizeOptions: number[] | null;
   updatedAt: Date | null; // null = nothing saved yet
 }
 
@@ -21,6 +22,7 @@ const FIELDS = {
   columns: { column: "columns", json: true },
   density: { column: "density", json: false },
   view: { column: "view", json: false },
+  pageSizeOptions: { column: "page_size_options", json: true },
 } as const satisfies Record<
   keyof UpdateTableSettingsDto,
   { column: string; json: boolean }
@@ -44,9 +46,17 @@ export class TableSettingsService {
           columns: row.columns,
           density: row.density,
           view: row.view,
+          pageSizeOptions: row.pageSizeOptions,
           updatedAt: row.updatedAt,
         }
-      : { tableKey, columns: null, density: null, view: null, updatedAt: null };
+      : {
+          tableKey,
+          columns: null,
+          density: null,
+          view: null,
+          pageSizeOptions: null,
+          updatedAt: null,
+        };
   }
 
   // Upsert of the sent fields only

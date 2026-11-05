@@ -7,6 +7,7 @@ import { NestFactory } from "@nestjs/core";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import {
+  AddTablesyncPageSizeOptions1793500000000,
   CreateTablesyncSettings1793300000000,
   TableSyncModule,
   TableSyncSettings,
@@ -38,7 +39,10 @@ describe.skipIf(!url)("TableSyncModule (e2e)", () => {
           type: "postgres",
           url,
           entities: [TableSyncSettings],
-          migrations: [CreateTablesyncSettings1793300000000],
+          migrations: [
+            CreateTablesyncSettings1793300000000,
+            AddTablesyncPageSizeOptions1793500000000,
+          ],
           dropSchema: true,
           migrationsRun: true,
         }),
@@ -68,6 +72,7 @@ describe.skipIf(!url)("TableSyncModule (e2e)", () => {
       columns: null,
       density: null,
       view: null,
+      pageSizeOptions: null,
       updatedAt: null,
     });
   });
@@ -90,6 +95,30 @@ describe.skipIf(!url)("TableSyncModule (e2e)", () => {
     expect(res.status).toBe(204);
     res = await call("GET", "/api/table-settings/users", "u1");
     expect((await res.json()).updatedAt).toBeNull();
+  });
+
+  it("saves page sizes per user and table", async () => {
+    const path = "/api/table-settings/orders";
+    let res = await call("PATCH", path, "u1", { pageSizeOptions: [15, 30, 100] });
+    expect(res.status).toBe(200);
+    expect((await res.json()).pageSizeOptions).toEqual([15, 30, 100]);
+
+    res = await call("GET", path, "u2");
+    expect((await res.json()).pageSizeOptions).toBeNull();
+
+    res = await call("PATCH", path, "u1", { pageSizeOptions: [101] });
+    expect(res.status).toBe(400);
+    expect(await res.json()).toMatchObject({
+      details: [{ field: "pageSizeOptions", errors: [expect.stringContaining("100")] }],
+    });
+
+    res = await call("PATCH", path, "u1", { density: "compact" });
+    expect((await res.json()).pageSizeOptions).toEqual([15, 30, 100]);
+
+    // null must be SQL NULL, not the JSON value null
+    res = await call("PATCH", path, "u1", { pageSizeOptions: null });
+    expect((await res.json()).pageSizeOptions).toBeNull();
+    await call("DELETE", path, "u1");
   });
 
   it("keeps users apart", async () => {

@@ -141,7 +141,11 @@ import {
       type: "postgres",
       url: process.env.DATABASE_URL,
       entities: [/* your entities */ TableSyncSettings],
-      migrations: [/* your migrations */ CreateTablesyncSettings1793300000000],
+      migrations: [
+        /* your migrations */
+        CreateTablesyncSettings1793300000000,
+        AddTablesyncPageSizeOptions1793500000000,
+      ],
     }),
     TableSyncModule.forRoot({
       // read the user from whatever your auth guard put on the request
@@ -156,7 +160,7 @@ export class AppModule {}
 
 - **Auth stays yours.** The module only reads the user id through `getUserId`. If that returns `null` or `undefined`, the request gets a 401. Your global guards run before it as usual.
 - **Validation is built in.** The controller has its own `ValidationPipe` (`whitelist`, `forbidNonWhitelisted`), so it works whether or not your app has a global one.
-- **Database:** PostgreSQL (`jsonb`). The table is `tablesync_settings`. Run the bundled migration, or create the table yourself with the SQL in `CreateTablesyncSettings1793300000000`. Column names are explicit, so any TypeORM naming strategy works.
+- **Database:** PostgreSQL (`jsonb`). The table is `tablesync_settings`. Run the bundled migrations, or create the table yourself with the SQL in `CreateTablesyncSettings1793300000000` and `AddTablesyncPageSizeOptions1793500000000`. Column names are explicit, so any TypeORM naming strategy works.
 - **Errors** are standard Nest exceptions, so your exception filter shapes them: `400` (bad input; the body has `details: [{ field, errors }]`, e.g. `columns.0.width`), `401` (no user), `422` (too many tables).
 - `TableSettingsService` is exported too, for use from your own code (for example, to delete a user's settings when you delete the user).
 
@@ -180,6 +184,7 @@ export class AppModule {}
   ],
   "density": "comfortable", // "compact" | "comfortable" | null
   "view": "striped", // a view id | null
+  "pageSizeOptions": [15, 30, 75], // sizes offered in the pager | null
 }
 ```
 
@@ -190,8 +195,15 @@ Validation used by `tablesync-nest`:
 - at most 60 columns
 - `width`: an integer from 40 to 1200, or `null`
 - `pinned`: `"left"`, `"right"` or `null`
+- `pageSizeOptions`: 1 to 10 unique whole numbers from 1 to 100, or `null`
 
 Responses wrapped in an envelope (`{ "data": … }`)? Pass `unwrap: (body) => body.data`. Need an auth header? Pass a `headers` function that returns it, e.g. `() => ({ Authorization: "Bearer " + getToken() })`. Cookies on another origin? Pass `credentials: "include"`.
+
+## Page sizes
+
+The pager offers `pagination.pageSizeOptions`, or `[10, 20, 50, 100]` when you pass none. Users can replace these with their own sizes in the settings drawer (up to 10 sizes, at most 100 rows per page); they are saved per user and table like everything else.
+
+If the page's current `pageSize` isn't one of the user's sizes, the table calls `pagination.onChange(1, smallestSize)` once the settings are loaded. Emptying the field, or "Reset to default", goes back to the code's sizes.
 
 ## Columns
 
