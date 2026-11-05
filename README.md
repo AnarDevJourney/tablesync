@@ -2,7 +2,7 @@
 
 **An Ant Design data table that remembers how each user likes it, on your server, on every device.**
 
-Users drag columns into their own order, hide the ones they don't need, resize, pin, and pick a density and a look. tablesync saves those choices **per user**, so the table looks the same on their laptop tomorrow and on their phone next week. You describe the columns once in code; tablesync handles the rest, frontend _and_ backend.
+Users drag columns into their own order, hide the ones they don't need, resize, pin, and pick a density, a look and their own page sizes. tablesync saves those choices **per user**, so the table looks the same on their laptop tomorrow and on their phone next week. You describe the columns once in code; tablesync handles the rest, frontend _and_ backend.
 
 [![npm](https://img.shields.io/npm/v/tablesync.svg?label=tablesync)](https://www.npmjs.com/package/tablesync)
 [![npm](https://img.shields.io/npm/v/tablesync-nest.svg?label=tablesync-nest)](https://www.npmjs.com/package/tablesync-nest)
@@ -45,7 +45,7 @@ Users drag columns into their own order, hide the ones they don't need, resize, 
 | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Per-user, server-side**        | Settings are saved through a storage adapter. Use your REST API and they follow the user to every browser. Use `localStorage` and you need no backend at all.                                     |
 | **Backend included**             | A NestJS + TypeORM module (`tablesync-nest`) with validation, per-user isolation and a migration. Prefer another stack? Three small endpoints ([contract](#backend-anything-else-rest-contract)). |
-| **Users shape it in place**      | Drag a header to reorder, drag its edge to resize (double-click resets), and a settings drawer for show/hide, pinning, density and views.                                                         |
+| **Users shape it in place**      | Drag a header to reorder, drag its edge to resize (double-click resets), and a settings drawer for show/hide, pinning, density, views and page sizes.                                             |
 | **6 views with live previews**   | Classic, striped, grid, minimal, cards, status accent. Every preview is drawn from the user's own columns.                                                                                        |
 | **Code defaults stay in charge** | The backend stores only what the user changed. `null` means "whatever the code says today", so new columns and new default widths reach everyone without a migration.                             |
 | **Built-in states**              | Skeleton rows on first load, dimmed rows on refetch, empty and error states, a ⋮ row-actions menu.                                                                                                |

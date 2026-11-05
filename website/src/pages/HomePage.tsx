@@ -22,7 +22,7 @@ const FEATURES = [
   {
     icon: <CloudServerOutlined />,
     title: "Saved per user, on your server",
-    text: "Column order, visibility, widths, pins, density and view follow each user to every browser and device.",
+    text: "Column order, visibility, widths, pins, density, view and page sizes follow each user to every browser and device.",
   },
   {
     icon: <DatabaseOutlined />,
@@ -32,7 +32,7 @@ const FEATURES = [
   {
     icon: <ColumnWidthOutlined />,
     title: "Shaped in place",
-    text: "Drag a header to reorder, drag its edge to resize, double-click to reset. A settings drawer does the rest.",
+    text: "Drag a header to reorder, drag its edge to resize, double-click to reset. A settings drawer handles the rest, including each user's own page sizes.",
   },
   {
     icon: <AppstoreOutlined />,
@@ -108,9 +108,9 @@ export function HomePage() {
           how each user likes them
         </h1>
         <p className={styles.lead}>
-          Users reorder, hide, resize and pin columns, and pick a density and a look.
-          tablesync saves it <strong>per user, on your server</strong> — frontend and
-          backend included.
+          Users reorder, hide, resize and pin columns, and pick a density, a look and
+          their own page sizes. tablesync saves it{" "}
+          <strong>per user, on your server</strong> — frontend and backend included.
         </p>
         <div className={styles.ctas}>
           <Link to="/docs">
@@ -146,9 +146,9 @@ export function HomePage() {
             Try it
           </h2>
           <p className={styles.sectionText}>
-            Drag a header, resize a column, open ⚙ to pin columns or switch the view —
-            then reload the page. This demo saves to your browser; in your app it saves to
-            your API.
+            Drag a header, resize a column, open ⚙ to pin columns, switch the view or set
+            your own page sizes — then reload the page. This demo saves to your browser;
+            in your app it saves to your API.
           </p>
         </div>
         <div className={styles.demoCard}>
